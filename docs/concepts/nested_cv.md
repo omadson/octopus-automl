@@ -162,7 +162,7 @@ runtime.
 
 ```python
 from octopus.study import OctoClassification
-from octopus.modules import Octo
+from octopus.modules import Tako
 
 study = OctoClassification(
     study_name="nested_cv_example",
@@ -173,7 +173,7 @@ study = OctoClassification(
     stratification_col="diagnosis",
     n_outer_splits=5,
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             n_inner_splits=5,

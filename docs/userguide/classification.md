@@ -60,7 +60,7 @@ df = pd.DataFrame({
 
 ```python
 from octopus.study import OctoClassification
-from octopus.modules import Octo
+from octopus.modules import Tako
 from octopus.types import ModelName
 
 study = OctoClassification(
@@ -71,7 +71,7 @@ study = OctoClassification(
     sample_id_col="sample_id",
     stratification_col="target",
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             description="classification_step",
@@ -123,7 +123,7 @@ study = OctoClassification(
     sample_id_col="sample_id",
     stratification_col="target",
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             models=[
@@ -206,7 +206,7 @@ Tree-based models also provide built-in (internal) feature importances automatic
 ```python
 from octopus.types import FIComputeMethod
 
-Octo(
+Tako(
     ...,
     fi_methods=[FIComputeMethod.PERMUTATION, FIComputeMethod.SHAP],
 )

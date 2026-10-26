@@ -58,7 +58,7 @@ df = pd.DataFrame({
 
 ```python
 from octopus.study import OctoRegression
-from octopus.modules import Octo
+from octopus.modules import Tako
 from octopus.types import ModelName
 
 study = OctoRegression(
@@ -68,7 +68,7 @@ study = OctoRegression(
     target_col="yield",
     sample_id_col="sample_id",
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             description="regression_step",
@@ -153,7 +153,7 @@ Feature importance methods work the same way as in classification:
 ```python
 from octopus.types import FIComputeMethod
 
-Octo(
+Tako(
     ...,
     fi_methods=[FIComputeMethod.PERMUTATION],
 )
@@ -168,7 +168,7 @@ reasonable parameter ranges:
 ```python
 from octopus.models.hyperparameter import IntHyperparameter, FloatHyperparameter
 
-Octo(
+Tako(
     ...,
     models=[ModelName.RandomForestRegressor],
     hyperparameters={

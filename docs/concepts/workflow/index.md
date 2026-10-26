@@ -50,13 +50,13 @@ In Python this translates to:
 
 ```python
 from octopus.study import OctoClassification
-from octopus.modules import Mrmr, Octo
+from octopus.modules import Mrmr, Tako
 from octopus.types import ModelName
 
 study = OctoClassification(
     ...,
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             description="step1_octo_full",
@@ -71,7 +71,7 @@ study = OctoClassification(
             description="step2_mrmr",
             n_features=15,
         ),
-        Octo(
+        Tako(
             task_id=2,
             depends_on=1,
             description="step3_octo_reduced",

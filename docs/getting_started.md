@@ -32,7 +32,7 @@ pip install "octopus-automl[autogluon,examples]"
 
 ```python
 from octopus.example_data import load_breast_cancer_data
-from octopus.modules import Octo
+from octopus.modules import Tako
 from octopus.study import OctoClassification
 from octopus.types import ModelName
 
@@ -48,7 +48,7 @@ study = OctoClassification(
     sample_id_col="index",
     stratification_col="target",
     workflow=[
-        Octo(
+        Tako(
             task_id=0,
             depends_on=None,
             models=[ModelName.ExtraTreesClassifier],
