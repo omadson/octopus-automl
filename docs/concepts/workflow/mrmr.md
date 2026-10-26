@@ -11,12 +11,14 @@ relevance signal and compresses the feature set for the next training round.
 
 ## How it works
 
-1. **Obtain relevance scores.** In the default `"permutation"` mode, MRMR reads
-   the permutation feature importances produced by a prior Octo task (specified
-   via `fi_method`). It aggregates importance values across inner splits, keeps
-   only features with positive importance, and uses these as the relevance
-   vector. Alternatively, when `relevance_method="f_statistics"`, MRMR computes
-   univariate F-statistics directly from the data (no prior task needed).
+1. **Obtain relevance scores.** By default (`relevance_type="from_dependency"`),
+   MRMR reads the feature importances produced by a prior Octo task. The
+   importance method is selected via `feature_importance_method` (default
+   `"permutation"`), and `feature_importance_type` selects which of the
+   task's pre-aggregated values is used. MRMR keeps only features with positive
+   importance and uses these as the relevance vector. Alternatively, with
+   `relevance_type="f_statistics"`, MRMR computes univariate F-statistics
+   directly from the data (no prior task needed).
 
 2. **Compute a pairwise correlation matrix.** Absolute Pearson, Spearman, or
    RDC correlations are calculated among all candidate features.
@@ -39,8 +41,9 @@ relevance signal and compresses the feature set for the next training round.
 |-----------|---------|-------------|
 | `n_features` | `30` | Number of features to select |
 | `correlation_type` | `"spearman"` | `"pearson"`, `"spearman"`, or `"rdc"` |
-| `relevance_method` | `"permutation"` | `"permutation"` (uses prior task's feature importances) or `"f_statistics"` |
-| `fi_method` | `"permutation"` | `"permutation"`, `"shap"`, `"internal"`, or `"lofo"` |
+| `relevance_type` | `"from_dependency"` | `"from_dependency"` (uses the prior task's feature importances) or `"f_statistics"` |
+| `feature_importance_type` | `"mean"` | `"mean"` or `"count"`: which pre-aggregated importances of the prior task are used (only with `"from_dependency"`) |
+| `feature_importance_method` | `"permutation"` | `"permutation"`, `"shap"`, or `"lofo"`: which importances of the prior task are used (only with `"from_dependency"`) |
 
 ## When to use
 
@@ -57,7 +60,7 @@ target feature count in mind and want a fast, non-iterative way to get there.
 
 ## Limitations
 
-- When using `relevance_method="permutation"`, MRMR **cannot be the first task**
+- When using `relevance_type="from_dependency"` (the default), MRMR **cannot be the first task**
   in a workflow, it requires feature importances from a prior module.
 - Only features with strictly positive importance are considered. If the prior
   model assigns zero or negative importance to many features, the effective

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - refactor: rename sequence to workflow
 - changed name of output directory
+- docs: fix code examples that failed (`Octo` renamed to `Tako`, removed arguments and modules, MRMR parameter names) (#449)
 
 ## [0.1.0] -
 

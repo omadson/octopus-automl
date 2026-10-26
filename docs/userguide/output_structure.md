@@ -142,17 +142,20 @@ diag.scores            # all performance scores
 ```
 
 
-### TaskPredictorTest
+### OctoPredictor
 
-To load predictions and models for a specific task:
+To load the fitted models of a specific task and predict on new data:
 
 ```python
-from octopus.predict import TaskPredictorTest
+from octopus.poststudy import OctoPredictor, load_study_information
 
-predictor = TaskPredictorTest(
-    study_path="studies/my_study-20260409_143000",
-    task_id=1,
-)
+study_info = load_study_information("studies/my_study-20260409_143000")
+predictor = OctoPredictor(study_info=study_info, task_id=1)
+
+predictions = predictor.predict(new_data)
 ```
 
-See the [API Reference](../reference/predict.md) for full details.
+The result has one row per sample (`row_id`), one column per outer split
+(`split_0`, `split_1`, ...) and an `ensemble` column.
+
+See the [API Reference](../reference/poststudy.md) for full details.

@@ -71,7 +71,6 @@ study = OctoTimeToEvent(
     duration_col="duration",
     event_col="event",
     sample_id_col="patient_id",
-    metrics=["CI"],
     studies_directory="./results",
     workflow=[
         Tako(
